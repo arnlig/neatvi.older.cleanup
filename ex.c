@@ -17,7 +17,9 @@ int xaw;			/* autowrite option */
 int xhl = 1;			/* syntax highlight option */
 int xled = 1;			/* use the line editor */
 int xtd = +1;			/* current text direction */
+#ifndef NO_SHAPE
 int xshape = 1;			/* perform letter shaping */
+#endif
 int xorder = 1;			/* change the order of characters */
 int xkmap = 0;			/* the current keymap */
 int xkmap_alt = 1;		/* the alternate keymap */
@@ -843,7 +845,9 @@ static struct option {
 	{"aw", "autowrite", &xaw},
 	{"ic", "ignorecase", &xic},
 	{"td", "textdirection", &xtd},
+#ifndef NO_SHAPE
 	{"shape", "shape", &xshape},
+#endif
 	{"order", "xorder", &xorder},
 	{"hl", "highlight", &xhl},
 };
