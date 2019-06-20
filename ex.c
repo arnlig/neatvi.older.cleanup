@@ -20,7 +20,9 @@ int xtd = +1;			/* current text direction */
 #ifndef NO_SHAPE
 int xshape = 1;			/* perform letter shaping */
 #endif
+#ifndef NO_ORDER
 int xorder = 1;			/* change the order of characters */
+#endif
 int xkmap = 0;			/* the current keymap */
 int xkmap_alt = 1;		/* the alternate keymap */
 static char xkwd[EXLEN];	/* the last searched keyword */
@@ -848,7 +850,9 @@ static struct option {
 #ifndef NO_SHAPE
 	{"shape", "shape", &xshape},
 #endif
+#ifndef NO_ORDER
 	{"order", "xorder", &xorder},
+#endif
 	{"hl", "highlight", &xhl},
 };
 
