@@ -160,5 +160,9 @@ int ren_cwid(char *s, int pos)
 char *ren_translate(char *s, char *ln)
 {
 	char *p = ren_placeholder(s);
+#ifndef NO_SHAPE
 	return p || !xshape ? p : uc_shape(ln, s);
+#else
+	return p;
+#endif
 }
