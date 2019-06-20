@@ -118,7 +118,7 @@ void lbuf_free(struct lbuf *lb)
 static int linelength(char *s)
 {
 	char *r = strchr(s, '\n');
-	return r ? r - s + 1 : strlen(s);
+	return r ? (unsigned)(r - s + 1) : strlen(s);
 }
 
 static int linecount(char *s)
