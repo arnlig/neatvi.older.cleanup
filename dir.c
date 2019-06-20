@@ -7,6 +7,7 @@ static struct rset *dir_rslr;	/* pattern of marks for left-to-right strings */
 static struct rset *dir_rsrl;	/* pattern of marks for right-to-left strings */
 static struct rset *dir_rsctx;	/* direction context patterns */
 
+#ifndef NO_ORDER
 static int dir_match(char **chrs, int beg, int end, int ctx, int *rec,
 		int *r_beg, int *r_end, int *c_beg, int *c_end, int *dir)
 {
@@ -64,6 +65,7 @@ static void dir_fix(char **chrs, int *ord, int dir, int beg, int end)
 		beg = r_end;
 	}
 }
+#endif
 
 /* return the direction context of the given line */
 int dir_context(char *s)
@@ -81,6 +83,7 @@ int dir_context(char *s)
 	return xtd < 0 ? -1 : +1;
 }
 
+#ifndef NO_ORDER
 /* reorder the characters in s */
 void dir_reorder(char *s, int *ord)
 {
@@ -94,6 +97,7 @@ void dir_reorder(char *s, int *ord)
 	dir_fix(chrs, ord, dir, 0, n);
 	free(chrs);
 }
+#endif
 
 void dir_init(void)
 {
