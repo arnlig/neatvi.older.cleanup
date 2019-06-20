@@ -1,5 +1,7 @@
 CC = cc
-CFLAGS = -Wall -O2 -Wstrict-prototypes -Wmissing-prototypes -Wno-unused-parameter -Wsign-compare #-Wextra
+# -DNO_SHAPE would disable generation of code for 'shape' setting
+DEFINES=
+CFLAGS = -Wall -O2 -Wstrict-prototypes -Wmissing-prototypes -Wno-unused-parameter -Wsign-compare $(DEFINES) #-Wextra
 LDFLAGS =
 DESTDIR = /usr/local/bin/
 
