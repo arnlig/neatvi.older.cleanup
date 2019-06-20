@@ -1339,6 +1339,7 @@ static void vi(void)
 	term_kill();
 }
 
+static
 void usage(void) {
 	puts(
 	"neatvi\n"
