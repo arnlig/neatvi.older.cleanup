@@ -1339,6 +1339,21 @@ static void vi(void)
 	term_kill();
 }
 
+void usage(void) {
+	puts(
+	"neatvi\n"
+	"\n"
+	"usage: vi [argument]... file\n"
+	"\n"
+	"Arguments:\n"
+	" -v			Vi mode (like \"vi\")\n"
+	" -e			Ex mode (like \"ex\")\n"
+	" -s			Silent  (skip terminal i/o setup)\n"
+	" -h			display this usage info\n"
+	);
+	exit(0);
+}
+
 int main(int argc, char *argv[])
 {
 	int i;
@@ -1351,6 +1366,8 @@ int main(int argc, char *argv[])
 			xvis = 0;
 		if (argv[i][1] == 'v')
 			xvis = 1;
+		if (argv[i][1] == 'h')
+			usage();
 	}
 	dir_init();
 	syn_init();
