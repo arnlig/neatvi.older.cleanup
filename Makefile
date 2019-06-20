@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -O2 -Wstrict-prototypes -Wmissing-prototypes -Wno-unused-parameter
+CFLAGS = -Wall -O2 -Wstrict-prototypes -Wmissing-prototypes -Wno-unused-parameter -Wsign-compare #-Wextra
 LDFLAGS =
 DESTDIR = /usr/local/bin/
 
