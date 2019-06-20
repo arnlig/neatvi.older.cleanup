@@ -1,7 +1,7 @@
 /* neatvi main header */
 
 /* helper macros */
-#define LEN(a)		(sizeof(a) / sizeof((a)[0]))
+#define LEN(a)		(int)(sizeof(a) / sizeof((a)[0]))
 #define MIN(a, b)	((a) < (b) ? (a) : (b))
 #define MAX(a, b)	((a) < (b) ? (b) : (a))
 
