@@ -6,6 +6,7 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
+#include <errno.h>
 #include "vi.h"
 
 static struct sbuf *term_sbuf;
@@ -56,7 +57,8 @@ void term_record(void)
 void term_commit(void)
 {
 	if (term_sbuf) {
-		write(1, sbuf_buf(term_sbuf), sbuf_len(term_sbuf));
+		int rc=write(1, sbuf_buf(term_sbuf), sbuf_len(term_sbuf));
+		if (rc==-1) fprintf(stderr, "commit errno=%d\n", errno);
 		sbuf_free(term_sbuf);
 		term_sbuf = NULL;
 	}
@@ -64,10 +66,12 @@ void term_commit(void)
 
 static void term_out(char *s)
 {
+	int rc=0;
 	if (term_sbuf)
 		sbuf_str(term_sbuf, s);
 	else
-		write(1, s, strlen(s));
+		rc=write(1, s, strlen(s));
+	if (rc==-1) fprintf(stderr, "out errno=%d\n", errno);
 }
 
 void term_str(char *s)
@@ -129,7 +133,7 @@ static int icmd_pos;		/* icmd[] position */
 /* read s before reading from the terminal */
 void term_push(char *s, int n)
 {
-	n = MIN(n, sizeof(ibuf) - ibuf_cnt);
+	n = MIN((unsigned int)n, sizeof(ibuf) - ibuf_cnt);
 	memcpy(ibuf + ibuf_cnt, s, n);
 	ibuf_cnt += n;
 }
@@ -158,7 +162,7 @@ int term_read(void)
 		ibuf_pos = 0;
 	}
 	c = ibuf_pos < ibuf_cnt ? (unsigned char) ibuf[ibuf_pos++] : -1;
-	if (icmd_pos < sizeof(icmd))
+	if ((unsigned int)icmd_pos < sizeof(icmd))
 		icmd[icmd_pos++] = c;
 	return c;
 }
