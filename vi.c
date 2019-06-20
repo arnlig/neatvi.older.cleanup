@@ -1303,7 +1303,7 @@ static void vi(void)
 			cmd = term_cmd(&n);
 			if (strchr("!<>ACDIJOPRSXYacdioprsxy~", c) ||
 					(c == 'g' && strchr("uU~", k))) {
-				if (n < sizeof(rep_cmd)) {
+				if ((unsigned)n < sizeof(rep_cmd)) {
 					memcpy(rep_cmd, cmd, n);
 					rep_len = n;
 				}
