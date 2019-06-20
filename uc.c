@@ -178,6 +178,7 @@ int uc_kind(char *c)
 			((ch) & 0xff00) == 0xfc00 || \
 			((ch) & 0xff00) == 0xfe00)
 
+#ifndef NO_SHAPE
 /* sorted list of characters that can be shaped */
 static struct achar {
 	unsigned c;		/* utf-8 code */
@@ -277,6 +278,7 @@ static int uc_cshape(int cur, int prev, int next)
 		c = ac->c;	/* some fonts do not have a glyph for ac->s */
 	return c ? c : cur;
 }
+#endif
 
 /*
  * return nonzero for Arabic combining characters
@@ -302,6 +304,7 @@ static int uc_acomb(int c)
 		c == 0x0670;				/* superscript alef */
 }
 
+#ifndef NO_SHAPE
 static void uc_cput(char *d, int c)
 {
 	int l = 0;
@@ -351,6 +354,7 @@ char *uc_shape(char *beg, char *s)
 	uc_cput(out, uc_cshape(curr, prev, next));
 	return out;
 }
+#endif
 
 static int dwchars[][2] = {
 	{0x1100, 0x115f}, {0x11a3, 0x11a7}, {0x11fa, 0x11ff}, {0x2329, 0x232a},
