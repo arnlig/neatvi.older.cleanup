@@ -458,7 +458,7 @@ static void rnode_emitnorep(struct rnode *n, struct regex *p)
 
 static void rnode_emit(struct rnode *n, struct regex *p)
 {
-	int last;
+	int last=0;
 	int jmpend[NREPS];
 	int jmpend_cnt = 0;
 	int i;
