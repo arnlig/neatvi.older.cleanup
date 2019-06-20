@@ -15,8 +15,10 @@ int *ren_position(char *s)
 	pos = malloc((n + 1) * sizeof(pos[0]));
 	for (i = 0; i < n; i++)
 		pos[i] = i;
+#ifndef NO_ORDER
 	if (xorder)
 		dir_reorder(s, pos);
+#endif
 	off = malloc(n * sizeof(off[0]));
 	for (i = 0; i < n; i++)
 		off[pos[i]] = i;
