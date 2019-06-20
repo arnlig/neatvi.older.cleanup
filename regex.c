@@ -9,7 +9,7 @@
 #define NDEPT		256	/* re_rec() recursion depth limit */
 
 #define MAX(a, b)	((a) < (b) ? (b) : (a))
-#define LEN(a)		(sizeof(a) / sizeof((a)[0]))
+#define LEN(a)		(int)(sizeof(a) / sizeof((a)[0]))
 
 /* regular expressions atoms */
 #define RA_CHR		'\0'	/* character literal */
