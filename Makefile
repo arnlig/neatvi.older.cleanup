@@ -1,5 +1,6 @@
 CC = cc
 # -DNO_SHAPE would disable generation of code for 'shape' setting
+# -DNO_ORDER would disable generation of code for 'order' setting
 DEFINES=
 CFLAGS = -Wall -O2 -Wstrict-prototypes -Wmissing-prototypes -Wno-unused-parameter -Wsign-compare $(DEFINES) #-Wextra
 LDFLAGS =
