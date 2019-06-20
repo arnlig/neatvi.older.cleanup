@@ -103,7 +103,7 @@ static void vi_drawrm(int r1, int r2, int newln)
 }
 
 static int vi_buf[128];
-static int vi_buflen;
+static unsigned int vi_buflen;
 
 static int vi_read(void)
 {
