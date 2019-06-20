@@ -6,27 +6,32 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <errno.h>
 #include "vi.h"
 
 static int cmd_make(char **argv, int *ifd, int *ofd)
 {
-	int pid;
+	int pid=0, irc=0, orc=0;
 	int pipefds0[2];
 	int pipefds1[2];
 	if (ifd)
-		pipe(pipefds0);
+		irc=pipe(pipefds0);
+	if (irc) fprintf(stderr, "ipipe errno=%d\n", errno);
 	if (ofd)
-		pipe(pipefds1);
+		orc=pipe(pipefds1);
+	if (orc) fprintf(stderr, "opipe errno=%d\n", errno);
 	if (!(pid = fork())) {
 		if (ifd) {		/* setting up stdin */
 			close(0);
-			dup(pipefds0[0]);
+			irc=dup(pipefds0[0]);
+			if (irc) fprintf(stderr, "idup errno=%d\n", errno);
 			close(pipefds0[1]);
 			close(pipefds0[0]);
 		}
 		if (ofd) {		/* setting up stdout */
 			close(1);
-			dup(pipefds1[1]);
+			orc=dup(pipefds1[1]);
+			if (orc) fprintf(stderr, "odup errno=%d\n", errno);
 			close(pipefds1[0]);
 			close(pipefds1[1]);
 		}
