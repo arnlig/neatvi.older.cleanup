@@ -234,7 +234,7 @@ static struct achar {
 	{0x200d, 0, 0x200d, 0x200d},			/* ZWJ */
 };
 
-static struct achar *find_achar(int c)
+static struct achar *find_achar(unsigned int c)
 {
 	int h, m, l;
 	h = LEN(achars);
