@@ -1342,7 +1342,14 @@ static void vi(void)
 static
 void usage(void) {
 	puts(
-	"neatvi\n"
+	"neatvi"
+#ifdef NO_SHAPE
+		" -DNO_SHAPE"
+#endif
+#ifdef NO_ORDER
+		" -DNO_ORDER"
+#endif
+		"\n"
 	"\n"
 	"usage: vi [argument]... file\n"
 	"\n"
