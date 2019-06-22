@@ -974,7 +974,8 @@ static void vc_charinfo(void)
 	if (c) {
 		char cbuf[8] = "";
 		memcpy(cbuf, c, uc_len(c));
-		snprintf(vi_msg, sizeof(vi_msg), "<%s> %04x\n", cbuf, uc_code(c));
+		snprintf(vi_msg, sizeof(vi_msg), "<%s> %04x\n", cbuf,
+						(unsigned)uc_code(c));
 	}
 }
 

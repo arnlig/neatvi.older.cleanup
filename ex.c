@@ -13,6 +13,7 @@ int xquit;			/* exit if set */
 int xvis;			/* visual mode */
 int xai;			/* autoindent option */
 int xic;			/* ignorecase option */
+static
 int xaw;			/* autowrite option */
 int xhl = 1;			/* syntax highlight option */
 int xled = 1;			/* use the line editor */
