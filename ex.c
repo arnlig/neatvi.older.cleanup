@@ -903,6 +903,31 @@ static int ec_set(char *ec)
 		ex_show("unknown option");
 		return 1;
 	}
+	else {
+		char set_str[99];
+		sprintf((char *)&set_str,
+			":set %s %s %s %s"
+#ifndef NO_ORDER
+				" %s"
+#endif
+#ifndef NO_SHAPE
+				" %s"
+#endif
+				" td=%d",
+				(xic) ? "ic" : "noic",
+				(xai) ? "ai" : "noai",
+				(xaw) ? "aw" : "noaw",
+				(xhl) ? "hl" : "nohl",
+#ifndef NO_ORDER
+				(xorder) ? "order" : "noorder",
+#endif
+#ifndef NO_SHAPE
+				(xshape) ? "shape" : "noshape",
+#endif
+				(xtd)
+		       );
+		ex_show((char *)&set_str);
+	}
 	return 0;
 }
 
