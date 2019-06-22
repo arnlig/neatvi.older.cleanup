@@ -11,8 +11,8 @@ int xrow, xoff, xtop;		/* current row, column, and top row */
 int xleft;			/* the first visible column */
 int xquit;			/* exit if set */
 int xvis;			/* visual mode */
-int xai = 1;			/* autoindent option */
-int xic = 1;			/* ignorecase option */
+int xai;			/* autoindent option */
+int xic;			/* ignorecase option */
 int xaw;			/* autowrite option */
 int xhl = 1;			/* syntax highlight option */
 int xled = 1;			/* use the line editor */
